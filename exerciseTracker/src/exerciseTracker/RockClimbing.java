@@ -17,23 +17,29 @@ public class RockClimbing extends Exercise {
 	public void setTimesClimbed(double timesClimbed) {
 		this.timesClimbed = timesClimbed;
 	}
+	// Defining what rock climbing is
 	public RockClimbing() {
 		super();
 	}
-	public RockClimbing(String name, String date, int duration, double wallHeight, double timesClimbed, String comment) {
+	public RockClimbing(String type, String name, String date, int duration, double wallHeight, double timesClimbed, String comment) {
 		super(name, date, duration, comment);
+		setTimesClimbed(timesClimbed);
+		setDuration(duration);
+		setWallHeight(wallHeight);
 	}
 	@Override
+	public String getType() {
+		return "rock climbing";
+	}
 	public String getName() {
 		return name;
 	}
 	@Override
 	public double getCaloriesBurned() {
-		caloriesBurned = ((wallHeight * timesClimbed) / getDuration()) * 100;
-		return caloriesBurned;
+		return ((wallHeight * timesClimbed) / getDuration()) * 100;
 	}
-	@Override
-	public double calculateCalories() {
-		return getCaloriesBurned();
+	@Override // Compare dates for sorting
+	public int compareTo(Exercise otherExercise) {
+		return this.getDate().compareTo(otherExercise.getDate());
 	}
 }

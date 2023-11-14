@@ -10,24 +10,28 @@ public class RunWalk extends Exercise {
 	public void setDistance(double distance) {
 		this.distance = distance;
 	}
-	
+	// Defining what a run/walk is
 	public RunWalk() {
 		super();
 	}
-	public RunWalk(String name, String date, int duration, double distance, String comment) {
+	public RunWalk(String type, String name, String date, int duration, double distance, String comment) {
 		super(name, date, duration, comment);
+		setDistance(distance);
+		setDuration(duration);
 	}
 	@Override
+	public String getType() {
+		return "runwalk";
+	}
 	public String getName() {
 		return name;
 	}
 	@Override
 	public double getCaloriesBurned() {
-		caloriesBurned = (distance / getDuration()) * 9000;
-		return caloriesBurned;
+		return (distance / getDuration()) * 9000;
 	}
-	@Override
-	public double calculateCalories() {
-		return getCaloriesBurned();
+	@Override // Compare to sort by date
+	public int compareTo(Exercise otherExercise) {
+		return this.getDate().compareTo(otherExercise.getDate());
 	}
 }
